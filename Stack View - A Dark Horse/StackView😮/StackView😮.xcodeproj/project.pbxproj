@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C65A25031F535099003CD23B /* OrientationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A25021F535099003CD23B /* OrientationVC.swift */; };
 		C6ECAC8B1F4A368400202243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAC8A1F4A368400202243 /* AppDelegate.swift */; };
 		C6ECAC8D1F4A368400202243 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAC8C1F4A368400202243 /* ViewController.swift */; };
 		C6ECAC901F4A368400202243 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6ECAC8E1F4A368400202243 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C65A25021F535099003CD23B /* OrientationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationVC.swift; sourceTree = "<group>"; };
 		C6ECAC871F4A368400202243 /* StackView😮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StackView😮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ECAC8A1F4A368400202243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6ECAC8C1F4A368400202243 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				C6ECAC911F4A368400202243 /* Assets.xcassets */,
 				C6ECAC931F4A368400202243 /* LaunchScreen.storyboard */,
 				C6ECAC961F4A368400202243 /* Info.plist */,
+				C65A25021F535099003CD23B /* OrientationVC.swift */,
 			);
 			path = "StackView😮";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65A25031F535099003CD23B /* OrientationVC.swift in Sources */,
 				C6ECAC8D1F4A368400202243 /* ViewController.swift in Sources */,
 				C6ECAC8B1F4A368400202243 /* AppDelegate.swift in Sources */,
 			);
@@ -507,6 +511,7 @@
 				C6ECACB11F4A368500202243 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6ECACB21F4A368500202243 /* Build configuration list for PBXNativeTarget "StackView😮Tests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +520,7 @@
 				C6ECACB41F4A368500202243 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C6ECACB51F4A368500202243 /* Build configuration list for PBXNativeTarget "StackView😮UITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +529,7 @@
 				C6ECACB71F4A368500202243 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
