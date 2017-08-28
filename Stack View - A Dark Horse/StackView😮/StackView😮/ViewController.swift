@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate var dataSource = ["Orientation Magic", "Fab Button"]
+    fileprivate var dataSource = ["Orientation Magic 🎩", "Fab Button 🙄", "TextField 😎"]
     
     fileprivate let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
