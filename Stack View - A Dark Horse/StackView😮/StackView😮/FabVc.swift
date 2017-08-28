@@ -31,7 +31,7 @@ class FabVc: UIViewController {
     private func createCustomFabMenu() {
         fabMenuButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         fabMenuButton.layer.cornerRadius = 25
-        fabMenuButton.backgroundColor = UIColor.random()
+        fabMenuButton.backgroundColor = UIColor.red
         fabMenuButton.setTitle("F", for: .normal)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(FabVc.fabMenuTapped(_:)))
@@ -53,12 +53,12 @@ class FabVc: UIViewController {
         
         let fabMenuButton = sender.view as? UIButton
         if fabMenuButton?.titleLabel?.text == "F" {
-            UIView.animate(withDuration: 0.75) { [unowned self] in
+            UIView.animate(withDuration: 0.50) { [unowned self] in
                 self.fabButton.arrangedSubviews.dropLast().forEach { $0.isHidden = false }
                 fabMenuButton?.setTitle("X", for: .normal)
             }
         } else {
-            UIView.animate(withDuration: 0.75) { [unowned self] in
+            UIView.animate(withDuration: 0.50) { [unowned self] in
                 self.fabButton.arrangedSubviews.dropLast().forEach { $0.isHidden = true }
                 fabMenuButton?.setTitle("F", for: .normal)
             }
@@ -68,7 +68,7 @@ class FabVc: UIViewController {
     private func getCircularButton() -> UIButton {
         let circularButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         circularButton.layer.cornerRadius = 25
-        circularButton.backgroundColor = UIColor.random()
+        circularButton.backgroundColor = UIColor.orange
         return circularButton
     }
     
