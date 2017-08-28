@@ -19,6 +19,7 @@ class OrientationVC: UIViewController {
     }
     
     @IBAction func changeAlignmentTapped(_ sender: Any) {
+        
         UIView.animate(withDuration: 0.5) { [unowned self] in
             if self.stackView.axis == .horizontal {
                 self.stackView.axis = .vertical
@@ -26,5 +27,7 @@ class OrientationVC: UIViewController {
                 self.stackView.axis = .horizontal
             }
         }
+        
     }
+    
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C65A25031F535099003CD23B /* OrientationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A25021F535099003CD23B /* OrientationVC.swift */; };
+		C65A25051F53765F003CD23B /* FabVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A25041F53765F003CD23B /* FabVc.swift */; };
+		C65A250B1F5389F3003CD23B /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A250A1F5389F3003CD23B /* ColorExtension.swift */; };
+		C65A250D1F538AF8003CD23B /* CGFloatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65A250C1F538AF8003CD23B /* CGFloatExtension.swift */; };
 		C6ECAC8B1F4A368400202243 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAC8A1F4A368400202243 /* AppDelegate.swift */; };
 		C6ECAC8D1F4A368400202243 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6ECAC8C1F4A368400202243 /* ViewController.swift */; };
 		C6ECAC901F4A368400202243 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6ECAC8E1F4A368400202243 /* Main.storyboard */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		C65A25021F535099003CD23B /* OrientationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationVC.swift; sourceTree = "<group>"; };
+		C65A25041F53765F003CD23B /* FabVc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FabVc.swift; sourceTree = "<group>"; };
+		C65A250A1F5389F3003CD23B /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		C65A250C1F538AF8003CD23B /* CGFloatExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGFloatExtension.swift; sourceTree = "<group>"; };
 		C6ECAC871F4A368400202243 /* StackView😮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "StackView😮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6ECAC8A1F4A368400202243 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6ECAC8C1F4A368400202243 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +82,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C65A25061F538960003CD23B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C65A25071F53896C003CD23B /* Extensions */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		C65A25071F53896C003CD23B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C65A250A1F5389F3003CD23B /* ColorExtension.swift */,
+				C65A250C1F538AF8003CD23B /* CGFloatExtension.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		C6ECAC7E1F4A368400202243 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +122,7 @@
 		C6ECAC891F4A368400202243 /* StackView😮 */ = {
 			isa = PBXGroup;
 			children = (
+				C65A25061F538960003CD23B /* Utilities */,
 				C6ECAC8A1F4A368400202243 /* AppDelegate.swift */,
 				C6ECAC8C1F4A368400202243 /* ViewController.swift */,
 				C6ECAC8E1F4A368400202243 /* Main.storyboard */,
@@ -106,6 +130,7 @@
 				C6ECAC931F4A368400202243 /* LaunchScreen.storyboard */,
 				C6ECAC961F4A368400202243 /* Info.plist */,
 				C65A25021F535099003CD23B /* OrientationVC.swift */,
+				C65A25041F53765F003CD23B /* FabVc.swift */,
 			);
 			path = "StackView😮";
 			sourceTree = "<group>";
@@ -262,8 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C65A25051F53765F003CD23B /* FabVc.swift in Sources */,
 				C65A25031F535099003CD23B /* OrientationVC.swift in Sources */,
 				C6ECAC8D1F4A368400202243 /* ViewController.swift in Sources */,
+				C65A250B1F5389F3003CD23B /* ColorExtension.swift in Sources */,
+				C65A250D1F538AF8003CD23B /* CGFloatExtension.swift in Sources */,
 				C6ECAC8B1F4A368400202243 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

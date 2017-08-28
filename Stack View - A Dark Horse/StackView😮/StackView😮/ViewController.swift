@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         }
     }
     
-    fileprivate var dataSource = ["Orientation Magic"]
+    fileprivate var dataSource = ["Orientation Magic", "Fab Button"]
     
     fileprivate let mainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
     
@@ -66,6 +66,9 @@ extension ViewController : UITableViewDelegate {
         case 0:
             let orientationVc = mainStoryboard.instantiateViewController(withIdentifier: "OrientationVC")
             navigationController?.pushViewController(orientationVc, animated: true)
+        case 1:
+            let fabVc = mainStoryboard.instantiateViewController(withIdentifier: "FabVc")
+            navigationController?.pushViewController(fabVc, animated: true)
             
         default:
             print("invalide case")
