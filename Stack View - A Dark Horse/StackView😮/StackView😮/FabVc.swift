@@ -53,12 +53,12 @@ class FabVc: UIViewController {
         
         let fabMenuButton = sender.view as? UIButton
         if fabMenuButton?.titleLabel?.text == "F" {
-            UIView.animate(withDuration: 0.50) { [unowned self] in
+            UIView.animate(withDuration: 0.25) { [unowned self] in
                 self.fabButton.arrangedSubviews.dropLast().forEach { $0.isHidden = false }
                 fabMenuButton?.setTitle("X", for: .normal)
             }
         } else {
-            UIView.animate(withDuration: 0.50) { [unowned self] in
+            UIView.animate(withDuration: 0.25) { [unowned self] in
                 self.fabButton.arrangedSubviews.dropLast().forEach { $0.isHidden = true }
                 fabMenuButton?.setTitle("F", for: .normal)
             }
