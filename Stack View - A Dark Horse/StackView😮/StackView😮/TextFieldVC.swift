@@ -52,7 +52,7 @@ class TextFieldVC: UIViewController {
     
     fileprivate var button: UIButton! {
         didSet {
-            button.setTitle("Toogle TextField", for: .normal)
+            button.setTitle("Toogle TextField Mode", for: .normal)
             button.setTitleColor(UIColor.brown, for: .normal)
             button.addTarget(self, action: #selector(changeMode), for: .touchUpInside)
         }
@@ -71,10 +71,14 @@ class TextFieldVC: UIViewController {
     var errorMessage: String = "" {
         didSet {
             if errorMessage == "" {
-                errorLabel.isHidden = true
+                UIView.animate(withDuration: 0.5) { [unowned self] in
+                    self.errorLabel.isHidden = true
+                }
             } else {
-                errorLabel.isHidden = false
-                errorLabel.text = errorMessage
+                
+                UIView.animate(withDuration: 0.5) { [unowned self] in
+                    self.errorLabel.isHidden = false
+                }
             }
         }
     }
@@ -173,7 +177,6 @@ extension TextFieldVC: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text?.characters.count != 10 {
             UIView.animate(withDuration: 0.5) { [unowned self] in
-                self.errorLabel.isHidden = false
                 self.errorMessage = "Invalid Mobile Number"
             }
         }

@@ -26,6 +26,7 @@ class FabVc: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        createTextField()
     }
     
     private func createCustomFabMenu() {
@@ -36,6 +37,19 @@ class FabVc: UIViewController {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(FabVc.fabMenuTapped(_:)))
         fabMenuButton.addGestureRecognizer(tapGesture)
+    }
+    
+    func createTextField() {
+        let textField = AckoTextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(textField)
+        textField.placeHolder = "Enter Mobile Number"
+        textField.floatingText = "Mobile Number"
+        NSLayoutConstraint.activate([
+            textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
+            textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            textField.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            ])
     }
     
     private func addButtonsToFab() {
