@@ -69,6 +69,9 @@ extension ViewController : UITableViewDelegate {
         case 1:
             let fabVc = mainStoryboard.instantiateViewController(withIdentifier: "FabVc")
             navigationController?.pushViewController(fabVc, animated: true)
+        case 2:
+            let textfieldVc = mainStoryboard.instantiateViewController(withIdentifier: "TextFieldVC")
+            navigationController?.pushViewController(textfieldVc, animated: true)
             
         default:
             print("invalide case")
