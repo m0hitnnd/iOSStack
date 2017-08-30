@@ -44,7 +44,7 @@ class FabVc: UIViewController {
         textField = AckoTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(textField)
-        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [regex: ])
+        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [(regex: "[1-9][0-9]{5}", message: "Invalid Pincode")])
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),

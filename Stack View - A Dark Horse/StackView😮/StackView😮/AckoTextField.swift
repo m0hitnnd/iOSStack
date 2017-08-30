@@ -121,6 +121,13 @@ class AckoTextField: UIStackView {
         }
     }
     
+    // Set text Color of textField
+    fileprivate var setTextColor: UIColor! {
+        didSet {
+            self.textColor = setTextColor
+        }
+    }
+    
     // TextField property
     var placeHolder: String? {
         get {
@@ -178,15 +185,14 @@ class AckoTextField: UIStackView {
     
     // Update color
     open func updateColors() {
-        self.updateLineView()
+        self.updateLineColor()
         self.updateTextColor()
     }
-    
 
     // Custom Line View function
     fileprivate func updateLineView() {
         if let lineView = self.lineView {
-            lineView.frame = self.lineViewRectForBounds(self.bounds, editing: self.editingOrSelected)
+            lineView.frame = self.lineViewRectForBounds(self.textField.bounds, editing: self.editingOrSelected)
             self.updateLineColor()
         }
         
@@ -194,18 +200,25 @@ class AckoTextField: UIStackView {
     
     fileprivate func updateTextColor() {
         if self.hasErrorMessage {
-            textField.textColor = self.errorLabel.textColor
+            textField.textColor = self.errorColor
         } else {
-            textField.textColor = self.textColor
+            textField.textColor = self.setTextColor
         }
     }
     
     fileprivate func updateLineColor() {
-        if self.hasErrorMessage {
-            self.lineView.backgroundColor = self.errorColor
-        } else {
-            self.lineView.backgroundColor = self.editingOrSelected ? self.selectedLineColor : self.lineColor
+        if (self.lineView) != nil {
+            if self.hasErrorMessage {
+                self.lineView.backgroundColor = self.errorColor
+            } else {
+                self.lineView.backgroundColor = self.editingOrSelected ? self.selectedLineColor : self.lineColor
+            }
         }
+    }
+    
+    fileprivate func updateControl() {
+        self.updateLineView()
+        self.updateColors()
     }
     
     func lineViewRectForBounds(_ bounds:CGRect, editing:Bool) -> CGRect {
@@ -282,7 +295,7 @@ class AckoTextField: UIStackView {
         setup()
     }
     
-    func setup() {
+    fileprivate func setup() {
         
         self.axis = .vertical
         self.alignment = .fill
@@ -292,7 +305,7 @@ class AckoTextField: UIStackView {
         createTextField()
     }
     
-    func createTextField() {
+    fileprivate func createTextField() {
         
         textField = UITextField()
         errorLabel = UILabel()
@@ -308,7 +321,7 @@ class AckoTextField: UIStackView {
         self.delegate = delegate
         self.placeHolder = placeHolderText
         self.font = font
-        self.textColor = textColor!
+        self.setTextColor = textColor!
         
         self.floatingText = floatingText
         self.floatingTextColor = floatingTextColor!
@@ -322,9 +335,9 @@ class AckoTextField: UIStackView {
         self.lineColor = lineColor!
         self.selectedLineColor = selectedLineColor!
 
-        
         self.errorColor = errorColor!
-        self.floatingTextColor = floatingTextColor!
+        self.errorFont = self.floatingTextFont
+        
         self.textAlignment = textAlignment
         
         self.borderStyle = borderStyle
@@ -354,24 +367,25 @@ class AckoTextField: UIStackView {
         self.selectedLineHeight = 2.0 * self.lineHeight
     }
     
-    func hideLineView(_ flag: Bool) {
+    fileprivate func hideLineView(_ flag: Bool) {
         if let lineView = self.lineView {
             lineView.isHidden = flag
         }
     }
     
-    func hideError(_ flag: Bool) {
+    fileprivate func hideError(_ flag: Bool) {
         UIView.animate(withDuration: 0.25) { [unowned self] in
             self.errorLabel.isHidden = flag
         }
     }
     
     func editingBegin() {
-        self.updateColors()
+        self.errorMessage = ""
+        self.updateControl()
     }
     
     func editingChanged() {
-        self.errorMessage = ""
+
         let text = textField.text ?? ""
         if text != "" {
             UIView.animate(withDuration: 0.25) { [unowned self] in
@@ -388,6 +402,7 @@ class AckoTextField: UIStackView {
         
         if let nonOpRules = rules {
          
+         if textField.hasText {
             for rule in nonOpRules {
                 let regEx = rule.regex
                 let regTest = NSPredicate(format: "SELF MATCHES %@", regEx)
@@ -400,8 +415,12 @@ class AckoTextField: UIStackView {
                     success = true
                 }
             }
+         } else {
+                success = false
+                errorMessage = "This is a required field"
+         }
         }
-        updateColors()
+        updateControl()
     }
     
     override func resignFirstResponder() -> Bool {
