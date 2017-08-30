@@ -267,6 +267,7 @@ class AckoTextField: UIStackView {
             if mode == .read {
                 UIView.animate(withDuration: 0.25) { [unowned self] in
                     self.textField.isEnabled = false
+                    self.textField.rightView?.isHidden = true
                     self.textField.borderStyle = .none
                     self.hideLineView(true)
                     self.axis = .horizontal
@@ -274,6 +275,7 @@ class AckoTextField: UIStackView {
             } else {
                 UIView.animate(withDuration: 0.25) { [unowned self] in
                     self.textField.isEnabled = true
+                    self.textField.rightView?.isHidden = false
                     self.textField.borderStyle = self.borderStyle
                     self.hideLineView(false)
                     self.axis = .vertical
@@ -316,7 +318,7 @@ class AckoTextField: UIStackView {
         self.addArrangedSubview(errorLabel)
     }
     
-    func prepareTextField(delegate: UITextFieldDelegate?, placeHolderText: String, font: UIFont, textColor: UIColor? = .black, floatingText: String?, floatingTextColor: UIColor? = .black, floatingTextFont: UIFont?, lineColor: UIColor? = .gray, selectedLineColor: UIColor? = .black, errorColor: UIColor? = .red, textAlignment: NSTextAlignment = .left, borderStyle: UITextBorderStyle, mode: Mode? = .write, rules: [Rule]? = nil) {
+    func prepareTextField(delegate: UITextFieldDelegate?, placeHolderText: String, font: UIFont, textColor: UIColor? = .black, floatingText: String?, floatingTextColor: UIColor? = .black, floatingTextFont: UIFont?, lineColor: UIColor? = .gray, selectedLineColor: UIColor? = .black, errorColor: UIColor? = .red, textAlignment: NSTextAlignment = .left, borderStyle: UITextBorderStyle, mode: Mode? = .write, rules: [Rule]? = nil, rightView: UIView?) {
         
         self.delegate = delegate
         self.placeHolder = placeHolderText
@@ -347,6 +349,8 @@ class AckoTextField: UIStackView {
         
         self.mode = mode!
         self.rules = rules
+        self.textField.rightView = rightView
+        self.textField.rightViewMode = .always
     }
     
     fileprivate func createLineView() {
@@ -380,6 +384,7 @@ class AckoTextField: UIStackView {
     }
     
     func editingBegin() {
+        self.textField.rightView?.isHidden = true
         self.errorMessage = ""
         self.updateControl()
     }
@@ -420,9 +425,15 @@ class AckoTextField: UIStackView {
                 errorMessage = "This is a required field"
          }
         }
+        
         updateControl()
+        if success {
+            textField.rightView?.isHidden = false
+            mode = .read
+        }
     }
     
+    @discardableResult
     override func resignFirstResponder() -> Bool {
         return textField.resignFirstResponder()
     }

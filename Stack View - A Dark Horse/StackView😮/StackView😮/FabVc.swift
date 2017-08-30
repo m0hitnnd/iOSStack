@@ -44,7 +44,16 @@ class FabVc: UIViewController {
         textField = AckoTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(textField)
-        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [(regex: "[1-9][0-9]{5}", message: "Invalid Pincode")])
+        
+        let tickButton = UIButton.init(frame: CGRect(origin: .zero, size: CGSize(width: 15, height: 30)))
+        tickButton.setTitle("✓", for: .normal)
+        tickButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        tickButton.setTitleColor(UIColor.black, for: .normal)
+        tickButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        tickButton.isHidden = true
+        
+        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [(regex: "[1-9][0-9]{5}", message: "Invalid Pincode")], rightView: tickButton)
+        
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
