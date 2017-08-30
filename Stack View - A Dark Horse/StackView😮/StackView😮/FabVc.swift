@@ -10,6 +10,7 @@ import UIKit
 
 class FabVc: UIViewController {
     
+    var textField: AckoTextField!
     @IBOutlet weak var fabButton: UIStackView! {
         didSet {
             addButtonsToFab()
@@ -40,11 +41,10 @@ class FabVc: UIViewController {
     }
     
     func createTextField() {
-        let textField = AckoTextField()
+        textField = AckoTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(textField)
-        textField.placeHolder = "Enter Mobile Number"
-        textField.floatingText = "Mobile Number"
+        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [regex: ])
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             textField.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
@@ -64,7 +64,7 @@ class FabVc: UIViewController {
     }
     
     func fabMenuTapped(_ sender: UITapGestureRecognizer) {
-        
+        textField.resignFirstResponder()
         let fabMenuButton = sender.view as? UIButton
         if fabMenuButton?.titleLabel?.text == "F" {
             UIView.animate(withDuration: 0.50) { [unowned self] in
