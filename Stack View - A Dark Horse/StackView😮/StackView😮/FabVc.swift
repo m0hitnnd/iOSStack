@@ -10,7 +10,14 @@ import UIKit
 
 class FabVc: UIViewController {
     
-    var textField: AckoTextField!
+    var textField: AckoTextField! {
+        didSet {
+            let rule: [Rule] = [(regex: "^[a-zA-Z.'-]+(?: +[a-zA-Z.'-]+)+$", message: "Full Name required")]
+            
+            textField.prepareTextField(delegate: self, placeHolderText: "Enter your Full Name", font: UIFont.systemFont(ofSize: 14), textColor: UIColor.black, floatingText: "Name", floatingTextColor: UIColor.darkGray, floatingTextFont: UIFont.systemFont(ofSize: 12), lineColor: UIColor.gray, selectedLineColor: UIColor.darkGray, errorColor: UIColor.red, textAlignment: .left, borderStyle: .none, mode: .write, rules: rule, rightView: createTickView())
+        }
+    }
+    
     @IBOutlet weak var fabButton: UIStackView! {
         didSet {
             addButtonsToFab()
@@ -44,15 +51,6 @@ class FabVc: UIViewController {
         textField = AckoTextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(textField)
-        
-        let tickButton = UIButton.init(frame: CGRect(origin: .zero, size: CGSize(width: 15, height: 30)))
-        tickButton.setTitle("✓", for: .normal)
-        tickButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        tickButton.setTitleColor(UIColor.black, for: .normal)
-        tickButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
-        tickButton.isHidden = true
-        
-        textField.prepareTextField(delegate: nil, placeHolderText: "Enter Pincode", font: UIFont.systemFont(ofSize: 12), floatingText: "Pincode", floatingTextFont: nil, borderStyle: .none, rules: [(regex: "[1-9][0-9]{5}", message: "Invalid Pincode")], rightView: tickButton)
         
         NSLayoutConstraint.activate([
             textField.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
@@ -93,6 +91,27 @@ class FabVc: UIViewController {
         circularButton.layer.cornerRadius = 25
         circularButton.backgroundColor = UIColor.orange
         return circularButton
+    }
+    
+    private func createTickView() -> UIButton {
+        let tickButton = UIButton.init(frame: CGRect(origin: .zero, size: CGSize(width: 15, height: 30)))
+        tickButton.setTitle("✓", for: .normal)
+        tickButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        tickButton.setTitleColor(UIColor.black, for: .normal)
+        tickButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        tickButton.isHidden = true
+        return tickButton
+    }
+}
+
+extension FabVc: UITextFieldDelegate {
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("Editing Begin")
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("Editing End")
     }
     
 }

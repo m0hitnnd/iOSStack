@@ -10,21 +10,30 @@ import UIKit
 
 typealias Rule = (regex: String, message: String)
 
-class AckoTextField: UIStackView {
+protocol AckoTextFieldDelegate: class {
+    func editingDidBegin()
+}
 
+class AckoTextField: UIStackView {
+    
+    weak var acokTFDelegate: AckoTextFieldDelegate?
+    
     var textField: UITextField! {
         didSet {
             textField.borderStyle = .none
             self.textField.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
             self.textField.addTarget(self, action: #selector(editingEnd), for: .editingDidEnd)
             self.textField.addTarget(self, action: #selector(editingBegin), for: .editingDidBegin)
+            textField.adjustsFontSizeToFitWidth = true
         }
     }
     
     // Error Label
     fileprivate var errorLabel: UILabel! {
         didSet {
-            errorLabel.isHidden = true
+            if !errorLabel.isHidden {
+                errorLabel.isHidden = true
+            }
             errorLabel.textAlignment = .left
         }
     }
@@ -53,8 +62,11 @@ class AckoTextField: UIStackView {
     // Floating Label
     fileprivate var floatLabel: UILabel! {
         didSet {
-            floatLabel.isHidden = true
+            if !floatLabel.isHidden {
+                floatLabel.isHidden = true
+            }
             floatLabel.textAlignment = .left
+            floatLabel.adjustsFontSizeToFitWidth = true
         }
     }
     
@@ -87,12 +99,19 @@ class AckoTextField: UIStackView {
         }
         set {
             self.textField.text = newValue
-            textField.sendActions(for: .editingDidEnd)
+            textField.sendActions(for: .editingChanged)
+        }
+    }
+    
+    var setText: String? {
+        didSet {
+            textField.text = setText
+            textField.sendActions(for: .editingChanged)
         }
     }
     
     // TextField property
-     var font: UIFont? {
+    var font: UIFont? {
         get {
             return textField.font
         }
@@ -179,7 +198,7 @@ class AckoTextField: UIStackView {
     
     var editingOrSelected:Bool {
         get {
-            return textField.isEditing || textField.isSelected;
+            return textField.isEditing || textField.isSelected
         }
     }
     
@@ -188,7 +207,7 @@ class AckoTextField: UIStackView {
         self.updateLineColor()
         self.updateTextColor()
     }
-
+    
     // Custom Line View function
     fileprivate func updateLineView() {
         if let lineView = self.lineView {
@@ -223,7 +242,7 @@ class AckoTextField: UIStackView {
     
     func lineViewRectForBounds(_ bounds:CGRect, editing:Bool) -> CGRect {
         let lineHeight:CGFloat = editing ? CGFloat(self.selectedLineHeight) : CGFloat(self.lineHeight)
-        return CGRect(x: 0, y: bounds.size.height - lineHeight, width: bounds.size.width, height: lineHeight);
+        return CGRect(x: 0, y: bounds.size.height - lineHeight, width: bounds.size.width, height: lineHeight)
     }
     
     // Float label Property
@@ -243,7 +262,6 @@ class AckoTextField: UIStackView {
             if errorMessage == "" {
                 hideError(true)
             } else {
-                errorLabel.text = errorMessage
                 hideError(false)
             }
         }
@@ -262,30 +280,41 @@ class AckoTextField: UIStackView {
     }
     
     // TextField Mode - Read or Write
-    fileprivate var mode: Mode! {
+    var mode: Mode! {
         didSet {
+            self.setText = textField.text
             if mode == .read {
-                UIView.animate(withDuration: 0.25) { [unowned self] in
-                    self.textField.isEnabled = false
-                    self.textField.rightView?.isHidden = true
-                    self.textField.borderStyle = .none
-                    self.hideLineView(true)
+                UIView.animate(withDuration: 0.25, animations: { [unowned self] in
                     self.axis = .horizontal
+                }) { [unowned self] (success) in
+                    if success {
+                        if self.floatLabel.isHidden {
+                            self.floatLabel.isHidden = false
+                        }
+                        self.textField.isEnabled = false
+                        self.textField.rightView?.isHidden = true
+                        self.textField.borderStyle = .none
+                        self.hideLineView(true)
+                    }
                 }
             } else {
-                UIView.animate(withDuration: 0.25) { [unowned self] in
-                    self.textField.isEnabled = true
-                    self.textField.rightView?.isHidden = false
-                    self.textField.borderStyle = self.borderStyle
-                    self.hideLineView(false)
+                UIView.animate(withDuration: 0.25, animations: { [unowned self] in
                     self.axis = .vertical
+                }) { [unowned self] (success) in
+                    if success {
+                        self.textField.isEnabled = true
+                        self.textField.rightView?.isHidden = false
+                        self.textField.rightView?.isHidden = true
+                        self.textField.borderStyle = self.borderStyle
+                        self.hideLineView(false)
+                    }
                 }
             }
         }
     }
     
     fileprivate var rules: [Rule]?
-    var success: Bool!
+    var success: Bool = true
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -312,13 +341,13 @@ class AckoTextField: UIStackView {
         textField = UITextField()
         errorLabel = UILabel()
         floatLabel = UILabel()
-
+        
         self.addArrangedSubview(floatLabel)
         self.addArrangedSubview(textField)
         self.addArrangedSubview(errorLabel)
     }
     
-    func prepareTextField(delegate: UITextFieldDelegate?, placeHolderText: String, font: UIFont, textColor: UIColor? = .black, floatingText: String?, floatingTextColor: UIColor? = .black, floatingTextFont: UIFont?, lineColor: UIColor? = .gray, selectedLineColor: UIColor? = .black, errorColor: UIColor? = .red, textAlignment: NSTextAlignment = .left, borderStyle: UITextBorderStyle, mode: Mode? = .write, rules: [Rule]? = nil, rightView: UIView?) {
+    func prepareTextField(delegate: UITextFieldDelegate?, placeHolderText: String, font: UIFont, textColor: UIColor? = .black, floatingText: String? = nil, floatingTextColor: UIColor? = .black, floatingTextFont: UIFont? = nil, lineColor: UIColor? = .gray, selectedLineColor: UIColor? = .black, errorColor: UIColor? = .red, textAlignment: NSTextAlignment = .left, borderStyle: UITextBorderStyle, mode: Mode? = .write, rules: [Rule]? = nil, rightView: UIView? = nil, interactionWithTF: Bool = true) {
         
         self.delegate = delegate
         self.placeHolder = placeHolderText
@@ -336,7 +365,7 @@ class AckoTextField: UIStackView {
         
         self.lineColor = lineColor!
         self.selectedLineColor = selectedLineColor!
-
+        
         self.errorColor = errorColor!
         self.errorFont = self.floatingTextFont
         
@@ -351,6 +380,7 @@ class AckoTextField: UIStackView {
         self.rules = rules
         self.textField.rightView = rightView
         self.textField.rightViewMode = .always
+        self.textField.isUserInteractionEnabled = interactionWithTF
     }
     
     fileprivate func createLineView() {
@@ -373,63 +403,77 @@ class AckoTextField: UIStackView {
     
     fileprivate func hideLineView(_ flag: Bool) {
         if let lineView = self.lineView {
-            lineView.isHidden = flag
+            if lineView.isHidden != flag {
+                lineView.isHidden = flag
+            }
         }
     }
     
     fileprivate func hideError(_ flag: Bool) {
+        
+        UIView.animate(withDuration: 0.25, animations: { [unowned self] in
+            if self.errorLabel.isHidden != flag {
+                self.errorLabel.isHidden = flag
+            }
+        }) { (success) in
+            if success {
+                self.errorLabel.text = self.errorMessage
+            }
+        }
+    }
+    
+    fileprivate func hideFloatLabel(_ flag: Bool) {
         UIView.animate(withDuration: 0.25) { [unowned self] in
-            self.errorLabel.isHidden = flag
+            if self.floatLabel.isHidden != flag {
+                self.floatLabel.isHidden = flag
+            }
         }
     }
     
     func editingBegin() {
+        acokTFDelegate?.editingDidBegin()
         self.textField.rightView?.isHidden = true
         self.errorMessage = ""
         self.updateControl()
     }
     
     func editingChanged() {
-
+        
         let text = textField.text ?? ""
         if text != "" {
-            UIView.animate(withDuration: 0.25) { [unowned self] in
-                self.floatLabel.isHidden = false
-                }
+            hideFloatLabel(false)
         } else {
-            UIView.animate(withDuration: 0.25) { [unowned self] in
-                self.floatLabel.isHidden = true
-            }
+            hideFloatLabel(true)
         }
     }
     
     func editingEnd() {
         
         if let nonOpRules = rules {
-         
-         if textField.hasText {
-            for rule in nonOpRules {
-                let regEx = rule.regex
-                let regTest = NSPredicate(format: "SELF MATCHES %@", regEx)
-                let textResult = regTest.evaluate(with: self.textField.text)
-                if textResult == false {
-                    success = false
-                    errorMessage = rule.message
-                    break
-                } else {
-                    success = true
+            
+            if textField.hasText {
+                for rule in nonOpRules {
+                    let regEx = rule.regex
+                    let regTest = NSPredicate(format: "SELF MATCHES %@", regEx)
+                    let textResult = regTest.evaluate(with: self.textField.text)
+                    if textResult == false {
+                        success = false
+                        errorMessage = rule.message
+                        break
+                    } else {
+                        success = true
+                    }
                 }
-            }
-         } else {
+            } else {
                 success = false
                 errorMessage = "This is a required field"
-         }
+            }
         }
         
         updateControl()
         if success {
             textField.rightView?.isHidden = false
-            mode = .read
+            // mode = .read
         }
     }
     
@@ -438,4 +482,10 @@ class AckoTextField: UIStackView {
         return textField.resignFirstResponder()
     }
     
+    func reset() {
+            success = true
+            textField.text = setText
+            errorMessage = ""
+            updateControl()
+    }
 }
