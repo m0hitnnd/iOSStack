@@ -15,6 +15,7 @@
 		A5AF70C725F79AB900543639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5AF70C525F79AB900543639 /* LaunchScreen.storyboard */; };
 		A5AF70D225F79AB900543639 /* CustomScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AF70D125F79AB900543639 /* CustomScrollViewTests.swift */; };
 		A5AF70DD25F79AB900543639 /* CustomScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AF70DC25F79AB900543639 /* CustomScrollViewUITests.swift */; };
+		A5AF70EE25F79ACB00543639 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AF70ED25F79ACB00543639 /* CustomScrollView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		A5AF70D825F79AB900543639 /* CustomScrollViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomScrollViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5AF70DC25F79AB900543639 /* CustomScrollViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollViewUITests.swift; sourceTree = "<group>"; };
 		A5AF70DE25F79AB900543639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5AF70ED25F79ACB00543639 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				A5AF70C325F79AB900543639 /* Assets.xcassets */,
 				A5AF70C525F79AB900543639 /* LaunchScreen.storyboard */,
 				A5AF70C825F79AB900543639 /* Info.plist */,
+				A5AF70ED25F79ACB00543639 /* CustomScrollView.swift */,
 			);
 			path = CustomScrollView;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				A5AF70BF25F79AB900543639 /* ViewController.swift in Sources */,
 				A5AF70BB25F79AB900543639 /* AppDelegate.swift in Sources */,
+				A5AF70EE25F79ACB00543639 /* CustomScrollView.swift in Sources */,
 				A5AF70BD25F79AB900543639 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
