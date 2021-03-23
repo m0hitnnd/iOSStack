@@ -21,8 +21,5 @@ func !<T1, T2>(
     return rhs.second(unwrappedLhs)
 }
 
-let optionalVar: String? = "some value"
-let result4: String = optionalVar ! { "We got \($0)" } | "blah"
-
-let anotherOptionalVar: Int? = nil
-let result5: String = anotherOptionalVar ! { "\($0)" } | "-1"
+let nextTask: String? = "Complete Blog"
+let result = nextTask ! { "1 new task - \($0)" } |  "No new task" 
