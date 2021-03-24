@@ -7,23 +7,42 @@
 
 import UIKit
 
-class TmdbTabBarViewController: UITabBarController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+final class TmdbTabBarViewController: UITabBarController {
+    
+    private let viewModel: TmdbTabBarViewModel
+    
+    init(viewModel: TmdbTabBarViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupBindings()
+    }
 
+}
+
+extension TmdbTabBarViewController {
+    func setupBindings() {
+        viewModel.items.bindAndFire { [weak self] items in
+            self?.setViewControllers(items)
+        }
+    }
+}
+
+extension TmdbTabBarViewController {
+    func setViewControllers(_ items: [TmdbTabBarViewModel.Item]) {
+        var controllers: [UIViewController] = []
+        for item in items {
+            let controller = item.getController()
+            controller.tabBarItem = item.tabBarItem()
+            controllers.append(controller)
+        }
+        self.viewControllers = controllers
+    }
 }

@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func showMainTabBar() {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let tabBarController = TmdbTabBarViewController()
+        let viewModel = TmdbTabBarViewModel()
+        let tabBarController = TmdbTabBarViewController(viewModel: viewModel)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
