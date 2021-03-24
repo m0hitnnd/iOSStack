@@ -13,6 +13,11 @@
 		A533F120260AEB9900AD3EF1 /* TrendingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F11F260AEB9900AD3EF1 /* TrendingViewController.swift */; };
 		A533F128260AEBA900AD3EF1 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F127260AEBA900AD3EF1 /* SearchViewController.swift */; };
 		A533F12D260AEBB700AD3EF1 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F12C260AEBB700AD3EF1 /* NowPlayingViewController.swift */; };
+		A533F134260B025F00AD3EF1 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F133260B025F00AD3EF1 /* WebService.swift */; };
+		A533F13D260B02FE00AD3EF1 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F13C260B02FE00AD3EF1 /* APIClientTests.swift */; };
+		A533F148260B393D00AD3EF1 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F147260B393D00AD3EF1 /* Request.swift */; };
+		A533F14D260B395800AD3EF1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F14C260B395800AD3EF1 /* HTTPMethod.swift */; };
+		A533F152260B397700AD3EF1 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A533F151260B397700AD3EF1 /* AnyEncodable.swift */; };
 		A53FE3B12609FC1100B058FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53FE3B02609FC1100B058FD /* AppDelegate.swift */; };
 		A53FE3BB2609FC1100B058FD /* TMDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A53FE3B92609FC1100B058FD /* TMDB.xcdatamodeld */; };
 		A53FE3BD2609FC1200B058FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3BC2609FC1200B058FD /* Assets.xcassets */; };
@@ -46,6 +51,11 @@
 		A533F11F260AEB9900AD3EF1 /* TrendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingViewController.swift; sourceTree = "<group>"; };
 		A533F127260AEBA900AD3EF1 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		A533F12C260AEBB700AD3EF1 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		A533F133260B025F00AD3EF1 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		A533F13C260B02FE00AD3EF1 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		A533F147260B393D00AD3EF1 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		A533F14C260B395800AD3EF1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		A533F151260B397700AD3EF1 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		A53FE3AD2609FC1100B058FD /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53FE3B02609FC1100B058FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A53FE3BA2609FC1100B058FD /* TMDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMDB.xcdatamodel; sourceTree = "<group>"; };
@@ -150,6 +160,32 @@
 			path = NowPlaying;
 			sourceTree = "<group>";
 		};
+		A533F131260B022200AD3EF1 /* Trending */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Trending;
+			sourceTree = "<group>";
+		};
+		A533F132260B024400AD3EF1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A533F133260B025F00AD3EF1 /* WebService.swift */,
+				A533F147260B393D00AD3EF1 /* Request.swift */,
+				A533F14C260B395800AD3EF1 /* HTTPMethod.swift */,
+				A533F151260B397700AD3EF1 /* AnyEncodable.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A533F13B260B02B900AD3EF1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				A533F13C260B02FE00AD3EF1 /* APIClientTests.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		A53FE3A42609FC1100B058FD = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +209,7 @@
 		A53FE3AF2609FC1100B058FD /* TMDB */ = {
 			isa = PBXGroup;
 			children = (
+				A533F132260B024400AD3EF1 /* Networking */,
 				A533F11E260AEB5D00AD3EF1 /* NowPlaying */,
 				A533F11D260AEB5700AD3EF1 /* Search */,
 				A533F11C260AEB4D00AD3EF1 /* Trending */,
@@ -190,6 +227,8 @@
 		A53FE3C92609FC1200B058FD /* TMDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				A533F13B260B02B900AD3EF1 /* Networking */,
+				A533F131260B022200AD3EF1 /* Trending */,
 				A533F10F260A1D2300AD3EF1 /* TabBar */,
 				A53FE3CA2609FC1200B058FD /* TMDBTests.swift */,
 				A53FE3CC2609FC1200B058FD /* Info.plist */,
@@ -346,11 +385,15 @@
 			files = (
 				A533F12D260AEBB700AD3EF1 /* NowPlayingViewController.swift in Sources */,
 				A53FE3F12609FCE400B058FD /* TmdbTabBarViewController.swift in Sources */,
+				A533F134260B025F00AD3EF1 /* WebService.swift in Sources */,
+				A533F14D260B395800AD3EF1 /* HTTPMethod.swift in Sources */,
 				A533F128260AEBA900AD3EF1 /* SearchViewController.swift in Sources */,
 				A533F112260A1E2800AD3EF1 /* Dynamic.swift in Sources */,
 				A53FE3BB2609FC1100B058FD /* TMDB.xcdatamodeld in Sources */,
 				A53FE3B12609FC1100B058FD /* AppDelegate.swift in Sources */,
+				A533F148260B393D00AD3EF1 /* Request.swift in Sources */,
 				A533F0F92609FEBA00AD3EF1 /* TmdbTabBarViewModel.swift in Sources */,
+				A533F152260B397700AD3EF1 /* AnyEncodable.swift in Sources */,
 				A533F120260AEB9900AD3EF1 /* TrendingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +402,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A533F13D260B02FE00AD3EF1 /* APIClientTests.swift in Sources */,
 				A53FE3CB2609FC1200B058FD /* TMDBTests.swift in Sources */,
 				A533F10B260A102500AD3EF1 /* TmdbTabBarViewModelTests.swift in Sources */,
 			);
