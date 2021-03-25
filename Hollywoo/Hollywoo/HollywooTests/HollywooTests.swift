@@ -1,14 +1,14 @@
 //
-//  TMDBTests.swift
-//  TMDBTests
+//  HollywooTests.swift
+//  HollywooTests
 //
-//  Created by Mohitnnd on 23/03/21.
+//  Created by Mohitnnd on 24/03/21.
 //
 
 import XCTest
-@testable import TMDB
+@testable import Hollywoo
 
-class TMDBTests: XCTestCase {
+class HollywooTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
